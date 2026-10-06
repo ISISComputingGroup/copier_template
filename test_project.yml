@@ -1,0 +1,9 @@
+project_name: "LibFOO"
+project_short_description: "Implements the FOO process for twiddling the bits."
+module_name: "libfoo"
+github_org_name: "ISISComputingGroup"
+github_repo_name: "libfoo"
+publish_to_pypi: false
+doc_theme_colour: "#7D7D7D"
+ci_os_platforms: ["ubuntu-latest"]
+ci_python_versions: ["3.14"]

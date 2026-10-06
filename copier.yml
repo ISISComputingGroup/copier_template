@@ -1,0 +1,58 @@
+_subdirectory: template
+
+project_name:
+    type: str
+    help: What is your project name (user-friendly string)?
+project_short_description:
+    type: str
+    help: A short one-sentence description of this project
+    validator: >-
+        {% if not project_short_description.strip() %}
+        Description must not be empty.
+        {% elif '\n' in project_short_description %}
+        Description must be a single line.
+        {% elif not project_short_description[0].isupper() %}
+        Description must start with a capital letter.
+        {% elif not project_short_description.endswith('.') %}
+        Description must end with a full stop.
+        {% endif %}
+module_name:
+    type: str
+    help: What is your Python module name?
+    validator: >-
+        {% if not module_name | regex_search('^[a-z][a-z0-9_]+$') %}
+        Must be a valid Python module name
+        {% endif %}
+github_org_name:
+    type: str
+    help: GitHub organisation name
+    default: ISISComputingGroup
+github_repo_name:
+    type: str
+    help: GitHub repository name
+publish_to_pypi:
+    type: bool
+    help: Should this project be set up to publish to (public) pypi?
+doc_theme_colour:
+    type: str
+    help: Theme colour for documentation
+    validator: >-
+        {% if not doc_theme_colour | regex_search('^#[0-9A-Fa-f]{6}$') %}
+        Must be a 6-digit hex colour including the leading '#', e.g. #7D7D7D.
+        {% endif %}
+ci_os_platforms:
+    type: yaml
+    help: Operating systems to test in CI
+    default: ["ubuntu-latest", "windows-latest"]
+ci_python_versions:
+    type: yaml
+    help: Python versions to test in CI
+    default: ["3.12", "3.13", "3.14"]
+
+_message_after_copy: |
+    Your project "{{ project_name }}" has been created successfully!
+
+    Remember to:
+    - git init .
+    - git push
+    - Create a new branch for your next feature

@@ -1,0 +1,50 @@
+line-length = 100
+indent-width = 4
+
+[lint]
+preview = true
+extend-select = [
+    "N",     # pep8-naming
+    "D",     # pydocstyle
+    "I",     # isort (for imports)
+    "line-too-long",  # Line too long ({width} > {limit})
+    "E",     # Pycodestyle errors
+    "W",     # Pycodestyle warnings
+    "F",     # Pyflakes
+    "PL",    # Pylint
+    "B",     # Flake8-bugbear
+    "PIE",   # Flake8-pie
+    "ANN",   # Annotations
+    "ASYNC", # Asyncio-specific checks
+    "NPY",   # Numpy-specific rules
+    "RUF",   # Ruff-specific checks, include some useful asyncio rules
+    "FURB",  # Rules from refurb
+    "ERA",   # Commented-out code
+    "PT",    # Pytest-specific rules
+    "LOG",   # Logging-specific rules
+    "G",     # Logging-specific rules
+    "UP",    # Pyupgrade
+    "SLF",   # Private-member usage
+    "PERF",  # Performance-related rules
+]
+ignore = [
+    "missing-new-line-after-section-name",    # Section name should end with a newline ("{name}")
+    "missing-dashed-underline-after-section",    # Missing dashed underline after section ("{name}")
+    "multi-line-summary-second-line",    # Incompatible with D212
+    "incorrect-blank-line-before-class",    # Incompatible with D211
+    "no-self-use", # Too noisy
+]
+[lint.per-file-ignores]
+"tests/**" = [
+    "invalid-function-name",     # Allow test names to be long / not pep8
+    "D",        # Don't require method documentation for test methods
+    "ANN",      # Don't require tests to use type annotations
+    "magic-value-comparison",  # Allow magic numbers in tests
+    "too-many-statements",  # Allow complex tests
+    "too-many-locals",  # Allow complex tests
+    "import-private-name",  # Allow tests to import "private" things
+    "private-member-access",   # Allow tests to use "private" things
+]
+"doc/conf.py" = [
+    "undocumented-public-module"
+]
