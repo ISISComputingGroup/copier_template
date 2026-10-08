@@ -9,6 +9,9 @@ See the [copier documentation](https://copier.readthedocs.io/en/stable/) for det
 
 Assume that `copier_template` and a blank new repository, `my_project`, are checked out into the same parent directory:
 - Run `uv tool install copier`
+- Run `copier copy https://github.com/ISISComputingGroup/copier_template.git ./my_project`
+
+Or, clone and use the template locally:
 - Run `copier copy ./copier_template ./my_project`
 - Answer the prompts
 - `git commit` the resulting structure into `my_project`
