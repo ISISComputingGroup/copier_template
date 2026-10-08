@@ -7,7 +7,7 @@ See the [copier documentation](https://copier.readthedocs.io/en/stable/) for det
 
 ## Creating a repository
 
-Assume that `copier_template` and a blank new repository, `my_project`, are checked out into the same parent directory:
+Assume that a blank new repository, `my_project`, is checked out:
 - Run `uv tool install copier`
 - Run `copier copy https://github.com/ISISComputingGroup/copier_template.git ./my_project`
 
