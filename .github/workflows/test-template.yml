@@ -1,0 +1,36 @@
+name: Test copier template
+on: [push, workflow_call]
+
+jobs:
+  test-copier-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: install copier
+        run: uv tool install copier
+      - name: expand template
+        run: copier copy --defaults --data-file test_project.yml --vcs-ref=HEAD . /tmp/expanded_template
+      - name: Git init in generated project
+        run: git init .
+        working-directory: /tmp/expanded_template
+      - name: Make venv in generated project
+        run: uv sync --extra dev
+        working-directory: /tmp/expanded_template
+      - name: Run pytest in generated project
+        run: uv run pytest
+        working-directory: /tmp/expanded_template
+      - name: Run ruff format check in generated project
+        run: uv run ruff format --check
+        working-directory: /tmp/expanded_template
+      - name: Run ruff check in generated project
+        run: uv run ruff check
+        working-directory: /tmp/expanded_template
+      - name: Run pyright in generated project
+        run: uv run pyright
+        working-directory: /tmp/expanded_template
+      - name: Build docs in generated project
+        run: uv run sphinx-build doc _build
+        working-directory: /tmp/expanded_template
