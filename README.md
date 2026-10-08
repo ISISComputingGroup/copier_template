@@ -19,7 +19,7 @@ Assume that `copier_template` and a blank new repository, `my_project`, are chec
 
 ## Developing the template itself
 
-Run copier as normal, but use the `--vcs-ref=HEAD` flag to force copier to use the locally-checked-out template
+Run copier as normal pointed at the locally-checked out copy, but use the `--vcs-ref=HEAD` flag to force copier to use the most recent local commit.
 rather than a tagged version.
 
 CI runs in *this* repository to check that copier can successfully instantiate the template in this repo.
